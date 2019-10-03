@@ -12,7 +12,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 2), () => Navigator.pushReplacementNamed(context, '/login')); // 2초 뒤에 HomePage로 이동
+    Timer(Duration(seconds: 2), () => Navigator.pushReplacementNamed(context, '/main')); // 2초 뒤에 HomePage로 이동
   }
 
   @override
