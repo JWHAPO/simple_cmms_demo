@@ -10,6 +10,16 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_launcher_icons: "^0.7.2+1"
+  http: 0.12.0+2
+  path_provider: ^1.3.0
+  image_picker: ^0.6.1+4
+
+flutter_icons:
+  image_path: "assets/icons/app_icon_512.png"
+  android: true
+  ios: true
+
   cupertino_icons: ^0.1.2
 
 dev_dependencies:
