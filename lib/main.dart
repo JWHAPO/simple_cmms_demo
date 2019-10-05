@@ -30,8 +30,21 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+
+
   @override
   Widget build(BuildContext context) {
+
+    final topAppBar = AppBar(
+      elevation: 0.1,
+      backgroundColor: Color.fromRGBO(255, 242, 230, 1.0),
+      title: Text(widget.title),
+    );
+
+
+    return BottomNavigationBar(
+
+    );
 
   }
 }
