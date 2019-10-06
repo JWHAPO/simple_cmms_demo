@@ -41,6 +41,19 @@ class _MyHomePageState extends State<MyHomePage> {
       title: Text(widget.title),
     );
 
+    final makeBottom = Container(
+      height: 55.0,
+      child: BottomAppBar(
+        color: Color.fromRGBO(255, 242, 230, 1.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+
+          ],
+        ),
+      ),
+    );
+
 
     return BottomNavigationBar(
 
