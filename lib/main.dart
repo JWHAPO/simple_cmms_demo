@@ -30,6 +30,22 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  int _currentIndex = 0;
+
+  var _tab1Icon = Icon(Icons.home, color: Colors.blueAccent,);
+  var _tab2Icon = Icon(Icons.accessibility, color: Colors.grey,);
+  var _tab3Icon = Icon(Icons.account_balance, color: Colors.grey,);
+  var _tab4Icon = Icon(Icons.web, color: Colors.grey,);
+  var _tab5Icon = Icon(Icons.wallpaper, color: Colors.grey,);
+
+  final List<Widget> _tabChildren = [
+    null,
+    null,
+    null,
+    null,
+    null
+  ];
+
 
 
   @override
