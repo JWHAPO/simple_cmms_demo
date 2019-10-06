@@ -64,16 +64,65 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
+            IconButton(icon: _tab1Icon, onPressed: (){
 
+            }),
+            IconButton(icon: _tab2Icon, onPressed: (){
+
+            }),
+            IconButton(icon: _tab3Icon, onPressed: (){
+
+            }),
+            IconButton(icon: _tab4Icon, onPressed: (){
+
+            }),
+            IconButton(icon: _tab5Icon, onPressed: (){
+
+            })
           ],
         ),
       ),
     );
 
 
-    return BottomNavigationBar(
-
+    return Scaffold(
+      appBar: topAppBar,
+      backgroundColor: Color.fromRGBO(255, 242, 230, 1.0),
+      body: _tabChildren[_currentIndex],
+      bottomNavigationBar: makeBottom,
     );
+  }
 
+  void onTabTapped(int index){
+    setState(() {
+      if(index==2){
+
+      }else{
+        _currentIndex = index;
+
+        _tab1Icon = Icon(Icons.home, color:Colors.grey);
+        _tab2Icon = Icon(Icons.accessibility, color:Colors.grey);
+        _tab3Icon = Icon(Icons.account_balance, color:Colors.grey);
+        _tab4Icon = Icon(Icons.web, color:Colors.grey);
+        _tab5Icon = Icon(Icons.wallpaper, color:Colors.grey);
+        switch(_currentIndex){
+          case 0:
+            _tab1Icon = Icon(Icons.home, color:Colors.blue);
+            break;
+          case 1:
+            _tab2Icon = Icon(Icons.accessibility, color:Colors.blue);
+            break;
+          case 2:
+
+            break;
+          case 3:
+            _tab4Icon = Icon(Icons.web, color:Colors.blue);
+            break;
+          case 4:
+            _tab5Icon = Icon(Icons.wallpaper, color:Colors.blue);
+            break;
+        }
+      }
+    });
   }
 }
