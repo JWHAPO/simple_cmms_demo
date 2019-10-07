@@ -7,7 +7,6 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-
   @override
   void initState() {
     // TODO: implement initState
@@ -19,10 +18,30 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: null,
-        color: Colors.greenAccent,
+        alignment: Alignment(0.0, 0.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              width: 140,
+              height: 140,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/images/splash_image.png'),
+                      fit: BoxFit.fill)),
+            ),
+            Text(
+              'Cricket Demo',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 32.0,
+                  fontFamily: 'NotoSans-bold'),
+            ),
+          ],
+        ),
+        color: Colors.white,
       ),
     );
   }
 }
-

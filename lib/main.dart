@@ -6,7 +6,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
 
   var routes = <String, WidgetBuilder>{
-    '/main':(BuildContext context) => MyHomePage(key: Key("mainPage"), title: "Recipe",),
+    '/main':(BuildContext context) => MyHomePage(key: Key("mainPage"), title: "Cricket Demo",),
   };
 
   @override
