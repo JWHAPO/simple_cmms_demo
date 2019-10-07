@@ -65,19 +65,19 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             IconButton(icon: _tab1Icon, onPressed: (){
-
+              onTabTapped(0);
             }),
             IconButton(icon: _tab2Icon, onPressed: (){
-
+              onTabTapped(1);
             }),
             IconButton(icon: _tab3Icon, onPressed: (){
-
+              onTabTapped(2);
             }),
             IconButton(icon: _tab4Icon, onPressed: (){
-
+              onTabTapped(3);
             }),
             IconButton(icon: _tab5Icon, onPressed: (){
-
+              onTabTapped(4);
             })
           ],
         ),
@@ -111,9 +111,6 @@ class _MyHomePageState extends State<MyHomePage> {
             break;
           case 1:
             _tab2Icon = Icon(Icons.accessibility, color:Colors.blue);
-            break;
-          case 2:
-
             break;
           case 3:
             _tab4Icon = Icon(Icons.web, color:Colors.blue);
