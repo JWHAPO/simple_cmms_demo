@@ -33,10 +33,10 @@ class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
 
   var _tab1Icon = Icon(Icons.home, color: Colors.blueAccent,);
-  var _tab2Icon = Icon(Icons.accessibility, color: Colors.grey,);
-  var _tab3Icon = Icon(Icons.account_balance, color: Colors.grey,);
-  var _tab4Icon = Icon(Icons.web, color: Colors.grey,);
-  var _tab5Icon = Icon(Icons.wallpaper, color: Colors.grey,);
+  var _tab2Icon = Icon(Icons.format_list_numbered, color: Colors.grey,);
+  var _tab3Icon = Icon(Icons.add, color: Colors.grey,);
+  var _tab4Icon = Icon(Icons.business, color: Colors.grey,);
+  var _tab5Icon = Icon(Icons.show_chart, color: Colors.grey,);
 
   final List<Widget> _tabChildren = [
     null,
@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     final makeBottom = Container(
-      height: 55.0,
+      height: 60.0,
       child: BottomAppBar(
         color: Color.fromRGBO(255, 242, 230, 1.0),
         child: Row(
@@ -101,22 +101,22 @@ class _MyHomePageState extends State<MyHomePage> {
         _currentIndex = index;
 
         _tab1Icon = Icon(Icons.home, color:Colors.grey);
-        _tab2Icon = Icon(Icons.accessibility, color:Colors.grey);
-        _tab3Icon = Icon(Icons.account_balance, color:Colors.grey);
-        _tab4Icon = Icon(Icons.web, color:Colors.grey);
-        _tab5Icon = Icon(Icons.wallpaper, color:Colors.grey);
+        _tab2Icon = Icon(Icons.format_list_numbered, color:Colors.grey);
+        _tab3Icon = Icon(Icons.add, color:Colors.grey);
+        _tab4Icon = Icon(Icons.business, color:Colors.grey);
+        _tab5Icon = Icon(Icons.show_chart, color:Colors.grey);
         switch(_currentIndex){
           case 0:
             _tab1Icon = Icon(Icons.home, color:Colors.blue);
             break;
           case 1:
-            _tab2Icon = Icon(Icons.accessibility, color:Colors.blue);
+            _tab2Icon = Icon(Icons.format_list_numbered, color:Colors.blue);
             break;
           case 3:
-            _tab4Icon = Icon(Icons.web, color:Colors.blue);
+            _tab4Icon = Icon(Icons.business, color:Colors.blue);
             break;
           case 4:
-            _tab5Icon = Icon(Icons.wallpaper, color:Colors.blue);
+            _tab5Icon = Icon(Icons.show_chart, color:Colors.blue);
             break;
         }
       }
