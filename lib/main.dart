@@ -3,6 +3,7 @@ import 'package:simple_cmms_demo/ui/splash.dart';
 
 void main() => runApp(MyApp());
 
+
 class MyApp extends StatelessWidget {
 
   var routes = <String, WidgetBuilder>{
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primaryColor: Color.fromRGBO(255, 242, 230, 1.0)),
+      theme: ThemeData(primaryColor: Color.fromRGBO(255, 255, 255, 1.0)),
       routes: routes,
       home: SplashPage(),
     );
@@ -53,14 +54,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final topAppBar = AppBar(
       elevation: 0.1,
-      backgroundColor: Color.fromRGBO(255, 242, 230, 1.0),
+      backgroundColor: Color.fromRGBO(255, 255, 255, 1.0),
       title: Text(widget.title),
     );
 
     final makeBottom = Container(
       height: 60.0,
       child: BottomAppBar(
-        color: Color.fromRGBO(255, 242, 230, 1.0),
+        color: Color.fromRGBO(255, 255, 255, 1.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -87,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: topAppBar,
-      backgroundColor: Color.fromRGBO(255, 242, 230, 1.0),
+      backgroundColor: Color.fromRGBO(255, 255, 255, 1.0),
       body: _tabChildren[_currentIndex],
       bottomNavigationBar: makeBottom,
     );
