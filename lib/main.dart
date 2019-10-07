@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final topAppBar = AppBar(
       elevation: 0.1,
       backgroundColor: Color.fromRGBO(255, 255, 255, 1.0),
-      title: Text(widget.title),
+      title: Text(widget.title, style: TextStyle(fontFamily: 'NotoSans-bold'),),
     );
 
     final makeBottom = Container(
