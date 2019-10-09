@@ -158,7 +158,7 @@ class _HomePageState extends State<HomePage> {
               children: <Widget>[
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
-                  child: Image.asset(breakdownEquip3Images[index],width: MediaQuery.of(context).size.height*0.18, height: MediaQuery.of(context).size.height*0.18,),
+                  child: Image.asset(breakdownEquip3Images[index],width: MediaQuery.of(context).size.height*0.18, height: MediaQuery.of(context).size.height*0.18,fit: BoxFit.cover,),
                 ),
                 SizedBox(
                   child: Text(breakdownEquip3Names[index], style: TextStyle(fontSize: 12, fontFamily: 'NotoSans-bold'),),
@@ -189,7 +189,7 @@ class _HomePageState extends State<HomePage> {
               children: <Widget>[
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
-                  child: Image.asset(inCompletedWorkImage[index],width: MediaQuery.of(context).size.height*0.18, height: MediaQuery.of(context).size.height*0.18,),
+                  child: Image.asset(inCompletedWorkImage[index],width: MediaQuery.of(context).size.height*0.18, height: MediaQuery.of(context).size.height*0.18,fit: BoxFit.cover,),
                 ),
                 SizedBox(
                   child: Text(inCompletedWorkEquip[index], style: TextStyle(fontSize: 12, fontFamily: 'NotoSans-bold'),),
