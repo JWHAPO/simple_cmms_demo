@@ -7,6 +7,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  final List<String> breakdownEquip3Images = [
+    'assets/images/eq1.jpg',
+    'assets/images/eq2.jpg',
+    'assets/images/eq3.jpg'
+  ];
+  final List<String> breakdownEquip3Names = [
+    'BOPP오버랩핑기',
+    '자동결속기',
+    '천공/제본기'
+  ];
+  final List<String> breakdownEquip3Desc = [
+    '고장건수: 3건, 개선건수: 2건, 설비정지:2건, 기계중지:1건',
+    '고장건수: 2건, 개선건수: 1건, 설비정지:1건, 기계중지:1건',
+    '고장건수: 1건, 개선건수: 1건, 설비정지:0건, 기계중지:1건',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,16 +56,7 @@ class _HomePageState extends State<HomePage> {
                 )
               ],
             ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 100,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.fill,
-                  image: AssetImage('assets/images/status_a.png'),
-                ),
-              ),
-            ),
+            monthCondition(),
             SizedBox(height: 10.0,),
             Stack(
               alignment: Alignment.bottomCenter,
@@ -66,6 +74,11 @@ class _HomePageState extends State<HomePage> {
                 )
               ],
             ),
+            breakdownTop3(),
+            Container(
+              height: 30,
+              color: Colors.amberAccent,
+            )
           ],
         ),
       )
@@ -73,10 +86,56 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget monthCondition(){
-    return Stack(
-      children: <Widget>[
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      color: Colors.amberAccent,
+      height: 80,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Icon(Icons.wb_sunny, color: Colors.blueAccent, size: 60,),
+          SizedBox(width: 20.0,),
+          Text('Status is Good', style: TextStyle(fontSize: 26, color:Colors.blueAccent, fontFamily: 'NotoSans-bold'),)
+        ],
+      ),
+//              decoration: BoxDecoration(
+//                image: DecorationImage(
+//                  fit: BoxFit.fill,
+//                  image: AssetImage('assets/images/status_a.png'),
+//                ),
+//              ),
+    );
+  }
 
-      ],
+  Widget breakdownTop3(){
+    return Container(
+      height: MediaQuery.of(context).size.height*0.26,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: breakdownEquip3Images.length,
+        itemBuilder: (context, index){
+          return Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Column(
+              children: <Widget>[
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.asset(breakdownEquip3Images[index],width: MediaQuery.of(context).size.height*0.18, height: MediaQuery.of(context).size.height*0.18,),
+                ),
+                SizedBox(
+                  child: Text(breakdownEquip3Names[index], style: TextStyle(fontSize: 12, fontFamily: 'NotoSans-bold'),),
+                  width: MediaQuery.of(context).size.height*0.18,
+                ),
+                SizedBox(
+                  child: Text(breakdownEquip3Desc[index], style: TextStyle(fontSize: 10, fontFamily: 'NotoSans-thin'),),
+                  width: MediaQuery.of(context).size.height*0.18,
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }
