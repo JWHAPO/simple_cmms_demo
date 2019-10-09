@@ -18,10 +18,33 @@ class _HomePageState extends State<HomePage> {
     '자동결속기',
     '천공/제본기'
   ];
-  final List<String> breakdownEquip3Desc = [
-    '고장건수: 3건, 개선건수: 2건, 설비정지:2건, 기계중지:1건',
-    '고장건수: 2건, 개선건수: 1건, 설비정지:1건, 기계중지:1건',
-    '고장건수: 1건, 개선건수: 1건, 설비정지:0건, 기계중지:1건',
+  final List<String> breakdownEquip3Location = [
+    '경기공장 > 1라인 > 포장 1실',
+    '경기공장 > 2라인 > 배합 1실 > 1번 창구 > 1번 줄',
+    '경기공장 > 4라인 > 포장 1실'
+  ];
+
+
+  final List<String> inCompletedWorkImage = [
+    'assets/images/bm1.jpg',
+    'assets/images/bm2.jpg',
+    'assets/images/bm3.jpg',
+    'assets/images/bm4.jpg',
+    'assets/images/bm5.jpg'
+  ];
+  final List<String> inCompletedWorkEquip = [
+    'BOPP오버랩핑기',
+    '자동결속기',
+    '천공/제본기',
+    '천공/제본기',
+    '천공/제본기'
+  ];
+  final List<String> inCompletedWorkDesc = [
+    '고장났습니다. 부품교체해주세요',
+    '고쳐주세요 고쳐주세요 고쳐줘요 고쳐줘요',
+    '너무 낡았습니다. 새로 사야할 것 같은 생각이 들고있어요.',
+    '너무 낡았습니다. 새로 사야할 것 같은 생각이 들고있어요.',
+    '너무 낡았습니다. 새로 사야할 것 같은 생각이 들고있어요.'
   ];
 
   @override
@@ -63,7 +86,7 @@ class _HomePageState extends State<HomePage> {
               children: <Widget>[
                 Align(
                   alignment: Alignment.bottomLeft,
-                  child: Text('이 달의 고장 Top3 설비 ', style: TextStyle(fontSize: 16, fontFamily: 'NotoSans-bold'),)
+                  child: Text('이 달의 고장 Top3 설비', style: TextStyle(fontSize: 16, fontFamily: 'NotoSans-bold'),)
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
@@ -74,11 +97,25 @@ class _HomePageState extends State<HomePage> {
                 )
               ],
             ),
-            breakdownTop3(),
-            Container(
-              height: 30,
-              color: Colors.amberAccent,
-            )
+            breakdownTop3Equip(),
+            SizedBox(height: 10.0,),
+            Stack(
+              alignment: Alignment.bottomCenter,
+              children: <Widget>[
+                Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text('미 해결 고장작업', style: TextStyle(fontSize: 16, fontFamily: 'NotoSans-bold'),)
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: InkWell(child: Text('더 보기', style: TextStyle(fontSize: 12, color: Colors.grey, fontFamily: 'NotoSans-bold'),),
+                    onTap: (){
+                      Scaffold.of(context).showSnackBar(SnackBar(content: Text('더 보기 버튼 클릭 ')));
+                    },),
+                )
+              ],
+            ),
+            inCompletedWork5()
           ],
         ),
       )
@@ -108,7 +145,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget breakdownTop3(){
+  Widget breakdownTop3Equip(){
     return Container(
       height: MediaQuery.of(context).size.height*0.26,
       child: ListView.builder(
@@ -128,7 +165,38 @@ class _HomePageState extends State<HomePage> {
                   width: MediaQuery.of(context).size.height*0.18,
                 ),
                 SizedBox(
-                  child: Text(breakdownEquip3Desc[index], style: TextStyle(fontSize: 10, fontFamily: 'NotoSans-thin'),),
+                  child: Text(breakdownEquip3Location[index], style: TextStyle(fontSize: 10, fontFamily: 'NotoSans-thin'),),
+                  width: MediaQuery.of(context).size.height*0.18,
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget inCompletedWork5(){
+    return Container(
+      height: MediaQuery.of(context).size.height*0.26,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: inCompletedWorkImage.length,
+        itemBuilder: (context, index){
+          return Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Column(
+              children: <Widget>[
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.asset(inCompletedWorkImage[index],width: MediaQuery.of(context).size.height*0.18, height: MediaQuery.of(context).size.height*0.18,),
+                ),
+                SizedBox(
+                  child: Text(inCompletedWorkEquip[index], style: TextStyle(fontSize: 12, fontFamily: 'NotoSans-bold'),),
+                  width: MediaQuery.of(context).size.height*0.18,
+                ),
+                SizedBox(
+                  child: Text(inCompletedWorkDesc[index], style: TextStyle(fontSize: 10, fontFamily: 'NotoSans-thin'),),
                   width: MediaQuery.of(context).size.height*0.18,
                 ),
               ],
