@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cmms_demo/ui/splash.dart';
+import 'package:simple_cmms_demo/ui/home.dart';
 
 void main() => runApp(MyApp());
 
@@ -40,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   var _tab5Icon = Icon(Icons.show_chart, color: Colors.grey,);
 
   final List<Widget> _tabChildren = [
-    null,
+    HomePage(),
     null,
     null,
     null,
