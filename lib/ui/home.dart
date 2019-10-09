@@ -21,7 +21,14 @@ class _HomePageState extends State<HomePage> {
               children: <Widget>[
                 Align(
                   alignment: Alignment.bottomLeft,
-                  child: Text('10월 보전상태', style: TextStyle(fontSize: 16, fontFamily: 'NotoSans-bold'),),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    verticalDirection: VerticalDirection.up,
+                    children: <Widget>[
+                      Text('10월 ', style: TextStyle(fontSize: 22, color:Colors.blueAccent, fontFamily: 'NotoSans-bold'),),
+                      Text('보전날씨 ', style: TextStyle(fontSize: 16, fontFamily: 'NotoSans-bold'),)
+                    ],
+                  ),
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
@@ -41,6 +48,23 @@ class _HomePageState extends State<HomePage> {
                   image: AssetImage('assets/images/status_a.png'),
                 ),
               ),
+            ),
+            SizedBox(height: 10.0,),
+            Stack(
+              alignment: Alignment.bottomCenter,
+              children: <Widget>[
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Text('이 달의 고장 Top3 설비 ', style: TextStyle(fontSize: 16, fontFamily: 'NotoSans-bold'),)
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: InkWell(child: Text('더 보기', style: TextStyle(fontSize: 12, color: Colors.grey, fontFamily: 'NotoSans-bold'),),
+                    onTap: (){
+                      Scaffold.of(context).showSnackBar(SnackBar(content: Text('더 보기 버튼 클릭 ')));
+                    },),
+                )
+              ],
             ),
           ],
         ),
