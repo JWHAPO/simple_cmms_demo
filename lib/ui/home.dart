@@ -85,6 +85,23 @@ class _HomePageState extends State<HomePage> {
               alignment: Alignment.bottomCenter,
               children: <Widget>[
                 Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text('나의 작업', style: TextStyle(fontSize: 16, fontFamily: 'NotoSans-bold'),)
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: InkWell(child: Text('더 보기', style: TextStyle(fontSize: 12, color: Colors.grey, fontFamily: 'NotoSans-bold'),),
+                    onTap: (){
+                      Scaffold.of(context).showSnackBar(SnackBar(content: Text('더 보기 버튼 클릭 ')));
+                    },),
+                )
+              ],
+            ),
+            SizedBox(height: 10.0,),
+            Stack(
+              alignment: Alignment.bottomCenter,
+              children: <Widget>[
+                Align(
                   alignment: Alignment.bottomLeft,
                   child: Text('이 달의 고장 Top3 설비', style: TextStyle(fontSize: 16, fontFamily: 'NotoSans-bold'),)
                 ),
