@@ -8,6 +8,23 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+
+  final List<String> myWorkImages = [
+    'assets/images/bm3.jpg',
+    'assets/images/bm4.jpg',
+    'assets/images/bm5.jpg'
+  ];
+  final List<String> myWorkEquip = [
+    'BOPP오버랩핑기',
+    '자동결속기',
+    '천공/제본기'
+  ];
+  final List<String> myWorkDesc = [
+    '이 것좀 고쳐주십시오 보전팀님들1',
+    '이 것좀 고쳐주십시오 보전팀님들2',
+    '이 것좀 고쳐주십시오 보전팀님들3'
+  ];
+
   final List<String> breakdownEquip3Images = [
     'assets/images/eq1.jpg',
     'assets/images/eq2.jpg',
@@ -97,6 +114,7 @@ class _HomePageState extends State<HomePage> {
                 )
               ],
             ),
+            myWork3(),
             SizedBox(height: 10.0,),
             Stack(
               alignment: Alignment.bottomCenter,
@@ -159,6 +177,37 @@ class _HomePageState extends State<HomePage> {
 //                  image: AssetImage('assets/images/status_a.png'),
 //                ),
 //              ),
+    );
+  }
+
+  Widget myWork3(){
+    return Container(
+      height: MediaQuery.of(context).size.height*0.26,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: myWorkImages.length,
+        itemBuilder: (context, index){
+          return Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Column(
+              children: <Widget>[
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.asset(myWorkImages[index],width: MediaQuery.of(context).size.height*0.18, height: MediaQuery.of(context).size.height*0.18,fit: BoxFit.cover,),
+                ),
+                SizedBox(
+                  child: Text(myWorkEquip[index], style: TextStyle(fontSize: 12, fontFamily: 'NotoSans-bold'),),
+                  width: MediaQuery.of(context).size.height*0.18,
+                ),
+                SizedBox(
+                  child: Text(myWorkDesc[index], style: TextStyle(fontSize: 10, fontFamily: 'NotoSans-thin'),),
+                  width: MediaQuery.of(context).size.height*0.18,
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 
