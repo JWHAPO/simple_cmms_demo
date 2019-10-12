@@ -102,24 +102,6 @@ class _HomePageState extends State<HomePage> {
               alignment: Alignment.bottomCenter,
               children: <Widget>[
                 Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Text('나의 작업', style: TextStyle(fontSize: 16, fontFamily: 'NotoSans-bold'),)
-                ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: InkWell(child: Text('더 보기', style: TextStyle(fontSize: 12, color: Colors.grey, fontFamily: 'NotoSans-bold'),),
-                    onTap: (){
-                      Scaffold.of(context).showSnackBar(SnackBar(content: Text('더 보기 버튼 클릭 ')));
-                    },),
-                )
-              ],
-            ),
-            myWork3(),
-            SizedBox(height: 10.0,),
-            Stack(
-              alignment: Alignment.bottomCenter,
-              children: <Widget>[
-                Align(
                   alignment: Alignment.bottomLeft,
                   child: Text('이 달의 고장 Top3 설비', style: TextStyle(fontSize: 16, fontFamily: 'NotoSans-bold'),)
                 ),
@@ -139,6 +121,24 @@ class _HomePageState extends State<HomePage> {
               children: <Widget>[
                 Align(
                     alignment: Alignment.bottomLeft,
+                    child: Text('나의 작업', style: TextStyle(fontSize: 16, fontFamily: 'NotoSans-bold'),)
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: InkWell(child: Text('더 보기', style: TextStyle(fontSize: 12, color: Colors.grey, fontFamily: 'NotoSans-bold'),),
+                    onTap: (){
+                      Scaffold.of(context).showSnackBar(SnackBar(content: Text('더 보기 버튼 클릭 ')));
+                    },),
+                )
+              ],
+            ),
+            myWork3(),
+            SizedBox(height: 10.0,),
+            Stack(
+              alignment: Alignment.bottomCenter,
+              children: <Widget>[
+                Align(
+                    alignment: Alignment.bottomLeft,
                     child: Text('미 해결 고장작업', style: TextStyle(fontSize: 16, fontFamily: 'NotoSans-bold'),)
                 ),
                 Align(
@@ -150,7 +150,19 @@ class _HomePageState extends State<HomePage> {
                 )
               ],
             ),
-            inCompletedWork5()
+            inCompletedWork5(),
+            SizedBox(height: 10.0,),
+            Stack(
+              alignment: Alignment.bottomCenter,
+              children: <Widget>[
+                Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text('관심이 필요합니다.', style: TextStyle(fontSize: 16, fontFamily: 'NotoSans-bold'),)
+                ),
+              ],
+            ),
+            needsAttentionEquip(),
+            SizedBox(height: 10.0,),
           ],
         ),
       )
@@ -189,21 +201,26 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (context, index){
           return Padding(
             padding: EdgeInsets.all(8.0),
-            child: Column(
-              children: <Widget>[
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.asset(myWorkImages[index],width: MediaQuery.of(context).size.height*0.18, height: MediaQuery.of(context).size.height*0.18,fit: BoxFit.cover,),
-                ),
-                SizedBox(
-                  child: Text(myWorkEquip[index], style: TextStyle(fontSize: 12, fontFamily: 'NotoSans-bold'),),
-                  width: MediaQuery.of(context).size.height*0.18,
-                ),
-                SizedBox(
-                  child: Text(myWorkDesc[index], style: TextStyle(fontSize: 10, fontFamily: 'NotoSans-thin'),),
-                  width: MediaQuery.of(context).size.height*0.18,
-                ),
-              ],
+            child: InkWell(
+              onTap: (){
+                Scaffold.of(context).showSnackBar(SnackBar(content: Text('항목 클릭함 ')));
+              },
+              child: Column(
+                children: <Widget>[
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.asset(myWorkImages[index],width: MediaQuery.of(context).size.height*0.18, height: MediaQuery.of(context).size.height*0.18,fit: BoxFit.cover,),
+                  ),
+                  SizedBox(
+                    child: Text(myWorkEquip[index], style: TextStyle(fontSize: 12, fontFamily: 'NotoSans-bold'),),
+                    width: MediaQuery.of(context).size.height*0.18,
+                  ),
+                  SizedBox(
+                    child: Text(myWorkDesc[index], style: TextStyle(fontSize: 10, fontFamily: 'NotoSans-thin'),),
+                    width: MediaQuery.of(context).size.height*0.18,
+                  ),
+                ],
+              ),
             ),
           );
         },
@@ -220,21 +237,26 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (context, index){
           return Padding(
             padding: EdgeInsets.all(8.0),
-            child: Column(
-              children: <Widget>[
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.asset(breakdownEquip3Images[index],width: MediaQuery.of(context).size.height*0.18, height: MediaQuery.of(context).size.height*0.18,fit: BoxFit.cover,),
-                ),
-                SizedBox(
-                  child: Text(breakdownEquip3Names[index], style: TextStyle(fontSize: 12, fontFamily: 'NotoSans-bold'),),
-                  width: MediaQuery.of(context).size.height*0.18,
-                ),
-                SizedBox(
-                  child: Text(breakdownEquip3Location[index], style: TextStyle(fontSize: 10, fontFamily: 'NotoSans-thin'),),
-                  width: MediaQuery.of(context).size.height*0.18,
-                ),
-              ],
+            child: InkWell(
+              onTap: (){
+                Scaffold.of(context).showSnackBar(SnackBar(content: Text('항목 클릭함 ')));
+              },
+              child: Column(
+                children: <Widget>[
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.asset(breakdownEquip3Images[index],width: MediaQuery.of(context).size.height*0.18, height: MediaQuery.of(context).size.height*0.18,fit: BoxFit.cover,),
+                  ),
+                  SizedBox(
+                    child: Text(breakdownEquip3Names[index], style: TextStyle(fontSize: 12, fontFamily: 'NotoSans-bold'),),
+                    width: MediaQuery.of(context).size.height*0.18,
+                  ),
+                  SizedBox(
+                    child: Text(breakdownEquip3Location[index], style: TextStyle(fontSize: 10, fontFamily: 'NotoSans-thin'),),
+                    width: MediaQuery.of(context).size.height*0.18,
+                  ),
+                ],
+              ),
             ),
           );
         },
@@ -251,24 +273,52 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (context, index){
           return Padding(
             padding: EdgeInsets.all(8.0),
-            child: Column(
-              children: <Widget>[
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.asset(inCompletedWorkImage[index],width: MediaQuery.of(context).size.height*0.18, height: MediaQuery.of(context).size.height*0.18,fit: BoxFit.cover,),
-                ),
-                SizedBox(
-                  child: Text(inCompletedWorkEquip[index], style: TextStyle(fontSize: 12, fontFamily: 'NotoSans-bold'),),
-                  width: MediaQuery.of(context).size.height*0.18,
-                ),
-                SizedBox(
-                  child: Text(inCompletedWorkDesc[index], style: TextStyle(fontSize: 10, fontFamily: 'NotoSans-thin'),),
-                  width: MediaQuery.of(context).size.height*0.18,
-                ),
-              ],
+            child: InkWell(
+              onTap: (){
+                Scaffold.of(context).showSnackBar(SnackBar(content: Text('항목 클릭함 ')));
+              },
+              child: Column(
+                children: <Widget>[
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.asset(inCompletedWorkImage[index],width: MediaQuery.of(context).size.height*0.18, height: MediaQuery.of(context).size.height*0.18,fit: BoxFit.cover,),
+                  ),
+                  SizedBox(
+                    child: Text(inCompletedWorkEquip[index], style: TextStyle(fontSize: 12, fontFamily: 'NotoSans-bold'),),
+                    width: MediaQuery.of(context).size.height*0.18,
+                  ),
+                  SizedBox(
+                    child: Text(inCompletedWorkDesc[index], style: TextStyle(fontSize: 10, fontFamily: 'NotoSans-thin'),),
+                    width: MediaQuery.of(context).size.height*0.18,
+                  ),
+                ],
+              ),
             ),
           );
         },
+      ),
+    );
+  }
+
+  Widget needsAttentionEquip(){
+    return InkWell(
+      onTap: (){
+        Scaffold.of(context).showSnackBar(SnackBar(content: Text('항목 클릭함 ')));
+      },
+      child: Container(
+        alignment: Alignment.center,
+        child: Padding(
+          padding: EdgeInsets.all(8.0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8.0),
+            child: Stack(
+              children: <Widget>[
+                Image.asset(breakdownEquip3Images[1],width: MediaQuery.of(context).size.width * 0.8, height: MediaQuery.of(context).size.width * 0.8,fit: BoxFit.cover,),
+                Padding(padding: EdgeInsets.only(left: 3.0, top: 3.0), child: Text(breakdownEquip3Names[1], style: TextStyle(backgroundColor: Colors.grey, fontSize: 18, color: Colors.white, fontFamily: 'NotoSans-bold'),)),
+              ],
+            )
+          )
+        ),
       ),
     );
   }
