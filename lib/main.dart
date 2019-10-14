@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
+  String title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -110,15 +110,19 @@ class _MyHomePageState extends State<MyHomePage> {
         switch(_currentIndex){
           case 0:
             _tab1Icon = Icon(Icons.home, color:Colors.blue);
+            widget.title = 'Cricket Demo';
             break;
           case 1:
             _tab2Icon = Icon(Icons.format_list_numbered, color:Colors.blue);
+            widget.title = 'Work Order';
             break;
           case 3:
             _tab4Icon = Icon(Icons.business, color:Colors.blue);
+            widget.title = 'Equipment';
             break;
           case 4:
             _tab5Icon = Icon(Icons.show_chart, color:Colors.blue);
+            widget.title = 'Chart';
             break;
         }
       }
