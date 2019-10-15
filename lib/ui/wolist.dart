@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 
 class WoListPage extends StatefulWidget {
@@ -90,7 +91,9 @@ class _WoListPageState extends State<WoListPage> {
           padding: const EdgeInsets.only(right: 20.0),
           child: InkWell(
             onTap: (){
-
+              FlutterBarcodeScanner.getBarcodeStreamReceiver('FF0000', 'CANCEL', true, ScanMode.DEFAULT).listen((barcode){
+                print('barcode::::$barcode');
+              });
             },
             child: Icon(Icons.filter_center_focus, size: 30,),
           ),
@@ -127,4 +130,6 @@ class _WoListPageState extends State<WoListPage> {
           }),
     );
   }
+
+
 }
