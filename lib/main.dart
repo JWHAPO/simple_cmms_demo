@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cmms_demo/ui/splash.dart';
 import 'package:simple_cmms_demo/ui/home.dart';
+import 'package:simple_cmms_demo/ui/wolist.dart';
 
 void main() => runApp(MyApp());
 
@@ -42,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List<Widget> _tabChildren = [
     HomePage(),
-    null,
+    WoListPage(),
     null,
     null,
     null
