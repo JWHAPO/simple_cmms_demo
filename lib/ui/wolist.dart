@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'dart:async';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 
@@ -49,6 +51,8 @@ class _WoListPageState extends State<WoListPage> {
   ];
 
   TextEditingController searchEditingController = TextEditingController();
+  String _scanBarcode = 'Unknown';
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -91,9 +95,8 @@ class _WoListPageState extends State<WoListPage> {
           padding: const EdgeInsets.only(right: 20.0),
           child: InkWell(
             onTap: (){
-              FlutterBarcodeScanner.getBarcodeStreamReceiver('FF0000', 'CANCEL', true, ScanMode.DEFAULT).listen((barcode){
-                print('barcode::::$barcode');
-              });
+              scanBarcode();
+
             },
             child: Icon(Icons.filter_center_focus, size: 30,),
           ),
@@ -129,6 +132,24 @@ class _WoListPageState extends State<WoListPage> {
             );
           }),
     );
+  }
+
+  Future<void> scanBarcode() async {
+    String barcodeScanRes;
+
+    try{
+      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode('#FF0000', 'Cancel', true, ScanMode.DEFAULT);
+      print('barcode:::$barcodeScanRes');
+    } on PlatformException{
+      barcodeScanRes = 'Failed to get platform version.';
+    }
+
+    if(!mounted) return;
+
+    setState(() {
+      _scanBarcode = barcodeScanRes;
+      searchEditingController.text = _scanBarcode;
+    });
   }
 
 
