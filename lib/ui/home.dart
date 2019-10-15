@@ -230,7 +230,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget breakdownTop3Equip(){
     return Container(
-      height: MediaQuery.of(context).size.height*0.26,
+      height: MediaQuery.of(context).size.height*0.28,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: breakdownEquip3Images.length,
@@ -266,7 +266,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget inCompletedWork5(){
     return Container(
-      height: MediaQuery.of(context).size.height*0.26,
+      height: MediaQuery.of(context).size.height*0.28,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: inCompletedWorkImage.length,
