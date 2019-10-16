@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_cmms_demo/ui/splash.dart';
 import 'package:simple_cmms_demo/ui/home.dart';
 import 'package:simple_cmms_demo/ui/wolist.dart';
+import 'package:simple_cmms_demo/ui/eqlist.dart';
 
 void main() => runApp(MyApp());
 
@@ -45,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
     HomePage(),
     WoListPage(),
     null,
-    null,
+    EqListPage(),
     null
   ];
 
