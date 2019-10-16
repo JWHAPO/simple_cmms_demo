@@ -3,6 +3,7 @@ import 'package:simple_cmms_demo/ui/splash.dart';
 import 'package:simple_cmms_demo/ui/home.dart';
 import 'package:simple_cmms_demo/ui/wolist.dart';
 import 'package:simple_cmms_demo/ui/eqlist.dart';
+import 'package:simple_cmms_demo/ui/chart.dart';
 
 void main() => runApp(MyApp());
 
@@ -38,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   var _tab1Icon = Icon(Icons.home, color: Colors.blueAccent,);
   var _tab2Icon = Icon(Icons.format_list_numbered, color: Colors.grey,);
-  var _tab3Icon = Icon(Icons.add, color: Colors.grey,);
+  var _tab3Icon = Icon(Icons.add, color: Colors.redAccent,);
   var _tab4Icon = Icon(Icons.business, color: Colors.grey,);
   var _tab5Icon = Icon(Icons.show_chart, color: Colors.grey,);
 
@@ -47,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
     WoListPage(),
     null,
     EqListPage(),
-    null
+    ChartPage()
   ];
 
 
@@ -106,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
         _tab1Icon = Icon(Icons.home, color:Colors.grey);
         _tab2Icon = Icon(Icons.format_list_numbered, color:Colors.grey);
-        _tab3Icon = Icon(Icons.add, color:Colors.grey);
+        _tab3Icon = Icon(Icons.add, color:Colors.redAccent);
         _tab4Icon = Icon(Icons.business, color:Colors.grey);
         _tab5Icon = Icon(Icons.show_chart, color:Colors.grey);
         switch(_currentIndex){
