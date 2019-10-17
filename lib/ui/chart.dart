@@ -148,23 +148,23 @@ class _ChartPageState extends State<ChartPage> {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 1,
+      aspectRatio: 1.5,
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-        color: const Color(0xff81e5cd),
+        color: Colors.grey,
         child: Stack(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
-                  Text('신고처리 완료건',style: TextStyle(color: const Color(0xff0f4ac), fontSize: 24, fontWeight: FontWeight.bold),),
-                  const SizedBox(height: 4,),
-                  Text('2019년',style: TextStyle(color: const Color(0xff379982), fontSize: 18, fontWeight: FontWeight.bold),),
-                  const SizedBox(height: 38,),
+                  Text('신고 처리율',style: TextStyle(color: Colors.white, fontSize: 20, fontFamily: 'NotoSans-bold'),),
+                  const SizedBox(height: 1,),
+                  Text('2019년',style: TextStyle(color: Colors.white, fontSize: 14, fontFamily: 'NotoSans-thin'),),
+                  const SizedBox(height: 24,),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 0.8),
@@ -185,7 +185,7 @@ class _ChartPageState extends State<ChartPage> {
               child: Align(
                 alignment: Alignment.topRight,
                 child: IconButton(
-                  icon: Icon(isPlaying ? Icons.pause : Icons.play_arrow, color: const Color(0xff0f4a3c),),
+                  icon: Icon(isPlaying ? Icons.pause : Icons.music_note, color: Colors.pinkAccent,),
                   onPressed: (){
                     setState(() {
                       isPlaying = !isPlaying;
@@ -213,7 +213,7 @@ class _ChartPageState extends State<ChartPage> {
     return BarChartGroupData(x: x, barRods: [
       BarChartRodData(
         y: isTouched ? y + 1 : y,
-        color: isTouched ? Colors.yellow : barColor,
+        color: isTouched ? Colors.pinkAccent : barColor,
         width: width,
         isRound: true,
         backDrawRodData: BackgroundBarChartRodData(
@@ -235,7 +235,7 @@ class _ChartPageState extends State<ChartPage> {
   List<BarChartGroupData> showingGroups() => List.generate(12, (i) {
     switch (i) {
       case 0:
-        return sample1MakeGroupData(0, 5, isTouched: i == touchedIndex);
+        return sample1MakeGroupData(0, 16, isTouched: i == touchedIndex);
       case 1:
         return sample1MakeGroupData(1, 6.5, isTouched: i == touchedIndex);
       case 2:
@@ -245,7 +245,7 @@ class _ChartPageState extends State<ChartPage> {
       case 4:
         return sample1MakeGroupData(4, 9, isTouched: i == touchedIndex);
       case 5:
-        return sample1MakeGroupData(5, 11.5, isTouched: i == touchedIndex);
+        return sample1MakeGroupData(5, 19, isTouched: i == touchedIndex);
       case 6:
         return sample1MakeGroupData(6, 6.5, isTouched: i == touchedIndex);
       case 7:
@@ -267,7 +267,7 @@ class _ChartPageState extends State<ChartPage> {
     return BarChartData(
       barTouchData: BarTouchData(
         touchTooltipData: TouchTooltipData(
-          tooltipBgColor: Colors.blueGrey,
+          tooltipBgColor: Colors.grey,
           getTooltipItems: (touchedSpots){
             return touchedSpots.map((touchedSpot){
               String months;
@@ -309,7 +309,7 @@ class _ChartPageState extends State<ChartPage> {
                   months = 'Dec';
                   break;
               }
-              return TooltipItem(months + '\n' + (touchedSpot.spot.y - 1).toString(), TextStyle(color: Colors.yellow));
+              return TooltipItem(months + '\n' + (touchedSpot.spot.y - 1).toString(), TextStyle(color: Colors.white, fontFamily: 'NotoSans-thin'));
             }).toList();
           }
         ),
@@ -319,7 +319,7 @@ class _ChartPageState extends State<ChartPage> {
         show: true,
         bottomTitles: SideTitles(
           showTitles: true,
-          textStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize:14),
+          textStyle: TextStyle(color: Colors.white, fontFamily: 'NotoSans-bold', fontSize:14),
           margin: 16,
           getTitles: (double value){
             switch(value.toInt()){
@@ -372,7 +372,7 @@ class _ChartPageState extends State<ChartPage> {
         show: true,
         bottomTitles: SideTitles(
           showTitles: true,
-          textStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
+          textStyle: TextStyle(color: Colors.white, fontFamily: 'NotoSans-bold', fontSize: 14),
           margin: 16,
           getTitles: (double value){
             switch(value.toInt()){
@@ -538,7 +538,7 @@ class _ChartPageState extends State<ChartPage> {
                             showTitles: true,
                             textStyle: TextStyle(
                                 color: const Color(0xff7589a2),
-                                fontWeight: FontWeight.bold,
+                                fontFamily: 'NotoSans-bold',
                                 fontSize: 12
                             ),
                             margin: 4,
@@ -576,7 +576,7 @@ class _ChartPageState extends State<ChartPage> {
                             showTitles: true,
                             textStyle: TextStyle(
                                 color: const Color(0xff7589a2),
-                                fontWeight: FontWeight.bold,
+                                fontFamily: 'NotoSans-bold',
                                 fontSize: 12
                             ),
                             margin: 16,
