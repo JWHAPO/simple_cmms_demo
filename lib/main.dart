@@ -37,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   int _currentIndex = 0;
 
-  var _tab1Icon = Icon(Icons.home, color: Colors.blueAccent,);
+  var _tab1Icon = Icon(Icons.home, color: Colors.black,);
   var _tab2Icon = Icon(Icons.format_list_numbered, color: Colors.grey,);
   var _tab3Icon = Icon(Icons.add, color: Colors.redAccent,);
   var _tab4Icon = Icon(Icons.business, color: Colors.grey,);
@@ -112,19 +112,19 @@ class _MyHomePageState extends State<MyHomePage> {
         _tab5Icon = Icon(Icons.show_chart, color:Colors.grey);
         switch(_currentIndex){
           case 0:
-            _tab1Icon = Icon(Icons.home, color:Colors.blue);
+            _tab1Icon = Icon(Icons.home, color:Colors.black);
             widget.title = 'Cricket Demo';
             break;
           case 1:
-            _tab2Icon = Icon(Icons.format_list_numbered, color:Colors.blue);
+            _tab2Icon = Icon(Icons.format_list_numbered, color:Colors.black);
             widget.title = 'Work Order';
             break;
           case 3:
-            _tab4Icon = Icon(Icons.business, color:Colors.blue);
+            _tab4Icon = Icon(Icons.business, color:Colors.black);
             widget.title = 'Equipment';
             break;
           case 4:
-            _tab5Icon = Icon(Icons.show_chart, color:Colors.blue);
+            _tab5Icon = Icon(Icons.show_chart, color:Colors.black);
             widget.title = 'Chart';
             break;
         }

@@ -208,7 +208,7 @@ class _ChartPageState extends State<ChartPage> {
       double y, {
         bool isTouched = false,
         Color barColor = Colors.white,
-        double width =22,
+        double width =20,
       }){
     return BarChartGroupData(x: x, barRods: [
       BarChartRodData(
@@ -249,15 +249,15 @@ class _ChartPageState extends State<ChartPage> {
       case 6:
         return sample1MakeGroupData(6, 6.5, isTouched: i == touchedIndex);
       case 7:
-        return sample1MakeGroupData(0, 5, isTouched: i == touchedIndex);
+        return sample1MakeGroupData(7, 5, isTouched: i == touchedIndex);
       case 8:
-        return sample1MakeGroupData(1, 6.5, isTouched: i == touchedIndex);
+        return sample1MakeGroupData(8, 6.5, isTouched: i == touchedIndex);
       case 9:
-        return sample1MakeGroupData(2, 5, isTouched: i == touchedIndex);
+        return sample1MakeGroupData(9, 5, isTouched: i == touchedIndex);
       case 10:
-        return sample1MakeGroupData(3, 7.5, isTouched: i == touchedIndex);
+        return sample1MakeGroupData(10, 7.5, isTouched: i == touchedIndex);
       case 11:
-        return sample1MakeGroupData(4, 9, isTouched: i == touchedIndex);
+        return sample1MakeGroupData(11, 9, isTouched: i == touchedIndex);
       default:
         return null;
     }
