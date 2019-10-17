@@ -12,7 +12,7 @@ class ChartPage extends StatefulWidget {
 class _ChartPageState extends State<ChartPage> {
   final Color leftBarColor = const Color(0xff53fdd7);
   final Color rightBarColor = const Color(0xffff5182);
-  final double width = 12;
+  final double width = 10;
 
   List<BarChartGroupData> rawBarGroups;
   List<BarChartGroupData> showingBarGroups;
@@ -24,18 +24,18 @@ class _ChartPageState extends State<ChartPage> {
   @override
   void initState() {
     super.initState();
-    final barGroup1 = makeGroupData(0, 5, 12);
-    final barGroup2 = makeGroupData(1, 16, 12);
-    final barGroup3 = makeGroupData(2, 18, 5);
+    final barGroup1 = makeGroupData(0, 10, 8);
+    final barGroup2 = makeGroupData(1, 14, 12);
+    final barGroup3 = makeGroupData(2, 13, 13);
     final barGroup4 = makeGroupData(3, 20, 16);
-    final barGroup5 = makeGroupData(4, 17, 6);
-    final barGroup6 = makeGroupData(5, 19, 1.5);
-    final barGroup7 = makeGroupData(6, 10, 1.5);
-    final barGroup8 = makeGroupData(7, 18, 5);
-    final barGroup9 = makeGroupData(8, 20, 16);
-    final barGroup10 = makeGroupData(9, 17, 6);
-    final barGroup11 = makeGroupData(10, 18, 5);
-    final barGroup12 = makeGroupData(11, 19, 1.5);
+    final barGroup5 = makeGroupData(4, 8, 6);
+    final barGroup6 = makeGroupData(5, 16, 12);
+    final barGroup7 = makeGroupData(6, 5, 5);
+    final barGroup8 = makeGroupData(7, 11, 9);
+    final barGroup9 = makeGroupData(8, 14, 13);
+    final barGroup10 = makeGroupData(9, 11, 11);
+    final barGroup11 = makeGroupData(10, 14, 13);
+    final barGroup12 = makeGroupData(11, 12, 10);
 
     final items = [
       barGroup1,
@@ -103,7 +103,7 @@ class _ChartPageState extends State<ChartPage> {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 1,
+      aspectRatio: 1.5,
       child: Card(
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
@@ -125,7 +125,7 @@ class _ChartPageState extends State<ChartPage> {
                     width: 38,
                   ),
                   Text(
-                    '신고대비 완료 막대',
+                    '신고 / 처리',
                     style: TextStyle(color: Colors.white, fontSize: 22, fontFamily: 'NotoSans-bold'),
                   ),
                   const SizedBox(
@@ -161,9 +161,9 @@ class _ChartPageState extends State<ChartPage> {
                             textStyle: TextStyle(
                               color: const Color(0xff7589a2),
                               fontWeight: FontWeight.bold,
-                              fontSize: 14
+                              fontSize: 12
                             ),
-                            margin: 20,
+                            margin: 4,
                             getTitles: (double value){
                               switch(value.toInt()){
                                 case 0:
@@ -199,9 +199,9 @@ class _ChartPageState extends State<ChartPage> {
                             textStyle: TextStyle(
                               color: const Color(0xff7589a2),
                               fontWeight: FontWeight.bold,
-                              fontSize: 14
+                              fontSize: 12
                             ),
-                            margin: 32,
+                            margin: 16,
                             reservedSize: 14,
                             getTitles: (value){
                               if(value == 0){
@@ -236,18 +236,18 @@ class _ChartPageState extends State<ChartPage> {
   }
 
   BarChartGroupData makeGroupData(int x, double y1, double y2) {
-    return BarChartGroupData(barsSpace: 4, x: x, barRods: [
+    return BarChartGroupData(barsSpace: 1, x: x, barRods: [
       BarChartRodData(
         y: y1,
         color: leftBarColor,
         width: width,
-        isRound: true,
+        isRound: false,
       ),
       BarChartRodData(
         y: y2,
         color: rightBarColor,
         width: width,
-        isRound: true,
+        isRound: false,
       ),
     ]);
   }
