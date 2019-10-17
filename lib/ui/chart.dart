@@ -1,15 +1,33 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 
 class ChartPage extends StatefulWidget {
+  final List<Color> availableColors = [
+    Colors.purpleAccent,
+    Colors.yellow,
+    Colors.lightBlue,
+    Colors.orange,
+    Colors.pink,
+    Colors.redAccent,
+  ];
+
   @override
   _ChartPageState createState() => _ChartPageState();
 }
 
 class _ChartPageState extends State<ChartPage> {
+  //sample1
+  final Color barBackgroundColor = const Color(0xff72d8bf);
+  final Duration animDuration = Duration(milliseconds: 250);
+  StreamController<BarTouchResponse> sample1BarTouchedResultStreamController;
+  int touchedIndex;
+  bool isPlaying = false;
+
+  //sample2
   final Color leftBarColor = const Color(0xff53fdd7);
   final Color rightBarColor = const Color(0xffff5182);
   final double width = 10;
@@ -24,6 +42,33 @@ class _ChartPageState extends State<ChartPage> {
   @override
   void initState() {
     super.initState();
+
+    //sample1
+    sample1BarTouchedResultStreamController = StreamController();
+    sample1BarTouchedResultStreamController.stream
+      .distinct()
+      .listen((BarTouchResponse response){
+        if(response == null){
+          return;
+        }
+
+        if(response.spot == null){
+          setState(() {
+            touchedIndex = -1;
+          });
+          return;
+        }
+
+        setState(() {
+          if(response.touchInput is FlLongPressEnd){
+            touchedIndex = -1;
+          }else{
+            touchedIndex = response.spot.touchedBarGroupPosition;
+          }
+        });
+    });
+
+    //sample2
     final barGroup1 = makeGroupData(0, 10, 8);
     final barGroup2 = makeGroupData(1, 14, 12);
     final barGroup3 = makeGroupData(2, 13, 13);
@@ -103,6 +148,339 @@ class _ChartPageState extends State<ChartPage> {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
+      aspectRatio: 1,
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+        color: const Color(0xff81e5cd),
+        child: Stack(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  Text('신고처리 완료건',style: TextStyle(color: const Color(0xff0f4ac), fontSize: 24, fontWeight: FontWeight.bold),),
+                  const SizedBox(height: 4,),
+                  Text('2019년',style: TextStyle(color: const Color(0xff379982), fontSize: 18, fontWeight: FontWeight.bold),),
+                  const SizedBox(height: 38,),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 0.8),
+                      child: FlChart(
+                        swapAnimationDuration: animDuration,
+                        chart:
+                          BarChart(isPlaying ? randomData() : mainBarData()),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12,
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  icon: Icon(isPlaying ? Icons.pause : Icons.play_arrow, color: const Color(0xff0f4a3c),),
+                  onPressed: (){
+                    setState(() {
+                      isPlaying = !isPlaying;
+                      if(isPlaying){
+                        refreshState();
+                      }
+                    });
+                  },
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  BarChartGroupData sample1MakeGroupData(
+      int x,
+      double y, {
+        bool isTouched = false,
+        Color barColor = Colors.white,
+        double width =22,
+      }){
+    return BarChartGroupData(x: x, barRods: [
+      BarChartRodData(
+        y: isTouched ? y + 1 : y,
+        color: isTouched ? Colors.yellow : barColor,
+        width: width,
+        isRound: true,
+        backDrawRodData: BackgroundBarChartRodData(
+          show: true,
+          y:20,
+          color: barBackgroundColor,
+        )
+      )
+    ]);
+  }
+
+
+  @override
+  void dispose() {
+    super.dispose();
+    sample1BarTouchedResultStreamController.close();
+  }
+
+  List<BarChartGroupData> showingGroups() => List.generate(12, (i) {
+    switch (i) {
+      case 0:
+        return sample1MakeGroupData(0, 5, isTouched: i == touchedIndex);
+      case 1:
+        return sample1MakeGroupData(1, 6.5, isTouched: i == touchedIndex);
+      case 2:
+        return sample1MakeGroupData(2, 5, isTouched: i == touchedIndex);
+      case 3:
+        return sample1MakeGroupData(3, 7.5, isTouched: i == touchedIndex);
+      case 4:
+        return sample1MakeGroupData(4, 9, isTouched: i == touchedIndex);
+      case 5:
+        return sample1MakeGroupData(5, 11.5, isTouched: i == touchedIndex);
+      case 6:
+        return sample1MakeGroupData(6, 6.5, isTouched: i == touchedIndex);
+      case 7:
+        return sample1MakeGroupData(0, 5, isTouched: i == touchedIndex);
+      case 8:
+        return sample1MakeGroupData(1, 6.5, isTouched: i == touchedIndex);
+      case 9:
+        return sample1MakeGroupData(2, 5, isTouched: i == touchedIndex);
+      case 10:
+        return sample1MakeGroupData(3, 7.5, isTouched: i == touchedIndex);
+      case 11:
+        return sample1MakeGroupData(4, 9, isTouched: i == touchedIndex);
+      default:
+        return null;
+    }
+  });
+  
+  BarChartData mainBarData(){
+    return BarChartData(
+      barTouchData: BarTouchData(
+        touchTooltipData: TouchTooltipData(
+          tooltipBgColor: Colors.blueGrey,
+          getTooltipItems: (touchedSpots){
+            return touchedSpots.map((touchedSpot){
+              String months;
+              switch(touchedSpot.spot.x.toInt()){
+                case 0:
+                  months = 'Jan';
+                  break;
+                case 1:
+                  months = 'Feb';
+                  break;
+                case 2:
+                  months = 'Mar';
+                  break;
+                case 3:
+                  months = 'Apr';
+                  break;
+                case 4:
+                  months = 'May';
+                  break;
+                case 5:
+                  months = 'Jun';
+                  break;
+                case 6:
+                  months = 'Jul';
+                  break;
+                case 7:
+                  months = 'Aug';
+                  break;
+                case 8:
+                  months = 'Sep';
+                  break;
+                case 9:
+                  months = 'Oct';
+                  break;
+                case 10:
+                  months = 'Nov';
+                  break;
+                case 11:
+                  months = 'Dec';
+                  break;
+              }
+              return TooltipItem(months + '\n' + (touchedSpot.spot.y - 1).toString(), TextStyle(color: Colors.yellow));
+            }).toList();
+          }
+        ),
+        touchResponseSink: sample1BarTouchedResultStreamController.sink,
+      ),
+      titlesData: FlTitlesData(
+        show: true,
+        bottomTitles: SideTitles(
+          showTitles: true,
+          textStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize:14),
+          margin: 16,
+          getTitles: (double value){
+            switch(value.toInt()){
+              case 0:
+                return '01';
+              case 1:
+                return '02';
+              case 2:
+                return '03';
+              case 3:
+                return '04';
+              case 4:
+                return '05';
+              case 5:
+                return '06';
+              case 6:
+                return '07';
+              case 7:
+                return '08';
+              case 8:
+                return '09';
+              case 9:
+                return '10';
+              case 10:
+                return '11';
+              case 11:
+                return '12';
+              default:
+                return '';
+            }
+          }
+        ),
+        leftTitles: const SideTitles(
+          showTitles: false,
+        ),
+      ),
+      borderData: FlBorderData(
+        show: false,
+      ),
+      barGroups: showingGroups(),
+    );
+  }
+
+  BarChartData randomData(){
+    return BarChartData(
+      barTouchData: const BarTouchData(
+        enabled: false,
+      ),
+      titlesData: FlTitlesData(
+        show: true,
+        bottomTitles: SideTitles(
+          showTitles: true,
+          textStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
+          margin: 16,
+          getTitles: (double value){
+            switch(value.toInt()){
+              case 0:
+                return '01';
+              case 1:
+                return '02';
+              case 2:
+                return '03';
+              case 3:
+                return '04';
+              case 4:
+                return '05';
+              case 5:
+                return '06';
+              case 6:
+                return '07';
+              case 7:
+                return '08';
+              case 8:
+                return '09';
+              case 9:
+                return '10';
+              case 10:
+                return '11';
+              case 11:
+                return '12';
+              default:
+                return '';
+            }
+          }
+        ),
+        leftTitles: const SideTitles(
+          showTitles: false,
+        )
+      ),
+      borderData: FlBorderData(
+        show: false,
+      ),
+      barGroups: List.generate(12, (i){
+        switch(i){
+          case 0:
+            return sample1MakeGroupData(0, Random().nextInt(15).toDouble() + 6,
+            barColor: widget.availableColors[
+            Random().nextInt(widget.availableColors.length)]);
+          case 1:
+            return sample1MakeGroupData(1, Random().nextInt(15).toDouble() + 6,
+            barColor: widget.availableColors[
+            Random().nextInt(widget.availableColors.length)]);
+          case 2:
+            return sample1MakeGroupData(2, Random().nextInt(15).toDouble() + 6,
+            barColor: widget.availableColors[
+            Random().nextInt(widget.availableColors.length)]);
+          case 3:
+            return sample1MakeGroupData(3, Random().nextInt(15).toDouble() + 6,
+            barColor: widget.availableColors[
+            Random().nextInt(widget.availableColors.length)]);
+          case 4:
+            return sample1MakeGroupData(4, Random().nextInt(15).toDouble() + 6,
+            barColor: widget.availableColors[
+            Random().nextInt(widget.availableColors.length)]);
+          case 5:
+            return sample1MakeGroupData(5, Random().nextInt(15).toDouble() + 6,
+            barColor: widget.availableColors[
+            Random().nextInt(widget.availableColors.length)]);
+          case 6:
+            return sample1MakeGroupData(6, Random().nextInt(15).toDouble() + 6,
+            barColor: widget.availableColors[
+            Random().nextInt(widget.availableColors.length)]);
+          case 7:
+            return sample1MakeGroupData(7, Random().nextInt(15).toDouble() + 6,
+            barColor: widget.availableColors[
+            Random().nextInt(widget.availableColors.length)]);
+          case 8:
+            return sample1MakeGroupData(8, Random().nextInt(15).toDouble() + 6,
+            barColor: widget.availableColors[
+            Random().nextInt(widget.availableColors.length)]);
+          case 9:
+            return sample1MakeGroupData(9, Random().nextInt(15).toDouble() + 6,
+            barColor: widget.availableColors[
+            Random().nextInt(widget.availableColors.length)]);
+          case 10:
+            return sample1MakeGroupData(10, Random().nextInt(15).toDouble() + 6,
+            barColor: widget.availableColors[
+            Random().nextInt(widget.availableColors.length)]);
+          case 11:
+            return sample1MakeGroupData(11, Random().nextInt(15).toDouble() + 6,
+            barColor: widget.availableColors[
+            Random().nextInt(widget.availableColors.length)]);
+          default:
+          return null;
+        }
+      }),
+    );
+  }
+
+  Future<dynamic> refreshState() async {
+    setState(() {
+
+    });
+    await Future<dynamic>.delayed(animDuration + Duration(milliseconds: 50));
+    if(isPlaying){
+      refreshState();
+    }
+  }
+
+  Widget chartSample2(){
+    return AspectRatio(
       aspectRatio: 1.5,
       child: Card(
         elevation: 0,
@@ -145,12 +523,12 @@ class _ChartPageState extends State<ChartPage> {
                         maxY: 20,
                         barTouchData: BarTouchData(
                           touchTooltipData: TouchTooltipData(
-                            tooltipBgColor: Colors.grey,
-                            getTooltipItems: (spots){
-                              return spots.map((TouchedSpot spot){
-                                return null;
-                              }).toList();
-                            }
+                              tooltipBgColor: Colors.grey,
+                              getTooltipItems: (spots){
+                                return spots.map((TouchedSpot spot){
+                                  return null;
+                                }).toList();
+                              }
                           ),
                           touchResponseSink: barTouchResultStreamController.sink,
                         ),
@@ -159,9 +537,9 @@ class _ChartPageState extends State<ChartPage> {
                           bottomTitles: SideTitles(
                             showTitles: true,
                             textStyle: TextStyle(
-                              color: const Color(0xff7589a2),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12
+                                color: const Color(0xff7589a2),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12
                             ),
                             margin: 4,
                             getTitles: (double value){
@@ -197,9 +575,9 @@ class _ChartPageState extends State<ChartPage> {
                           leftTitles: SideTitles(
                             showTitles: true,
                             textStyle: TextStyle(
-                              color: const Color(0xff7589a2),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12
+                                color: const Color(0xff7589a2),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12
                             ),
                             margin: 16,
                             reservedSize: 14,
