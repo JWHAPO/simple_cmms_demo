@@ -20,6 +20,11 @@ class ChartPage extends StatefulWidget {
 }
 
 class _ChartPageState extends State<ChartPage> {
+
+  //pieChartSample2
+  StreamController<PieTouchResponse> pieTouchedResultStreamController;
+  int pieTouchedIndex;
+
   //lineSample2
   List<Color> gradientColors = [
     const Color(0xff23b6e6),
@@ -154,43 +159,58 @@ class _ChartPageState extends State<ChartPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        AspectRatio(
-          aspectRatio: 1.70,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(18),
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+//          lineSample2(),
+//          barChartSample1(),
+//          barChartSample2(),
+        ],
+      ),
+    );
+  }
+
+  Widget lineSample2(){
+    return Padding(
+      padding: EdgeInsets.all(12.0),
+      child: Stack(
+        children: <Widget>[
+          AspectRatio(
+            aspectRatio: 1.70,
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(18),
+                  ),
+                  color: const Color(0xff232d37)
               ),
-              color: const Color(0xff232d37)
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(right: 18.0, left: 12.0, top: 24, bottom: 12),
-              child: FlChart(
-                chart: LineChart(
-                  showAvg ? avgData() : mainData(),
+              child: Padding(
+                padding: const EdgeInsets.only(right: 18.0, left: 12.0, top: 24, bottom: 12),
+                child: FlChart(
+                  chart: LineChart(
+                    showAvg ? avgData() : mainData(),
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        SizedBox(
-          width: 60,
-          height: 34,
-          child: FlatButton(
-            onPressed: (){
-              setState(() {
-                showAvg = !showAvg;
-              });
-            },
-            child: Text(
-              'avg',
-              style: TextStyle(fontSize: 12, fontFamily: 'NotoSans-bold', color: showAvg ? Colors.white.withOpacity(0.5): Colors.white),
+          SizedBox(
+            width: 60,
+            height: 34,
+            child: FlatButton(
+              onPressed: (){
+                setState(() {
+                  showAvg = !showAvg;
+                });
+              },
+              child: Text(
+                'avg',
+                style: TextStyle(fontSize: 12, fontFamily: 'NotoSans-bold', color: showAvg ? Colors.white.withOpacity(0.5): Colors.white),
+              ),
             ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 
@@ -273,7 +293,7 @@ class _ChartPageState extends State<ChartPage> {
             FlSpot(10, 8),
             FlSpot(11, 5),
           ],
-          isCurved: true,
+          isCurved: false,
           colors: gradientColors,
           barWidth: 5,
           isStrokeCapRound: true,
@@ -401,57 +421,60 @@ class _ChartPageState extends State<ChartPage> {
   }
 
   Widget barChartSample1(){
-    return AspectRatio(
-      aspectRatio: 1.5,
-      child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-        color: Colors.grey,
-        child: Stack(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Text('신고 처리율',style: TextStyle(color: Colors.white, fontSize: 20, fontFamily: 'NotoSans-bold'),),
-                  const SizedBox(height: 1,),
-                  Text('2019년',style: TextStyle(color: Colors.white, fontSize: 14, fontFamily: 'NotoSans-thin'),),
-                  const SizedBox(height: 24,),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0.8),
-                      child: FlChart(
-                        swapAnimationDuration: animDuration,
-                        chart:
-                        BarChart(isPlaying ? randomData() : mainBarData()),
+    return Padding(
+      padding: EdgeInsets.all(10.0),
+      child: AspectRatio(
+        aspectRatio: 1.7,
+        child: Card(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+          color: Colors.indigo,
+          child: Stack(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
+                  children: <Widget>[
+                    Text('신고 처리율',style: TextStyle(color: Colors.white, fontSize: 20, fontFamily: 'NotoSans-bold'),),
+                    const SizedBox(height: 1,),
+                    Text('2019년',style: TextStyle(color: Colors.white, fontSize: 14, fontFamily: 'NotoSans-thin'),),
+                    const SizedBox(height: 24,),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 0.8),
+                        child: FlChart(
+                          swapAnimationDuration: animDuration,
+                          chart:
+                          BarChart(isPlaying ? randomData() : mainBarData()),
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 12,
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
-                alignment: Alignment.topRight,
-                child: IconButton(
-                  icon: Icon(isPlaying ? Icons.pause : Icons.music_note, color: Colors.pinkAccent,),
-                  onPressed: (){
-                    setState(() {
-                      isPlaying = !isPlaying;
-                      if(isPlaying){
-                        refreshState();
-                      }
-                    });
-                  },
+                    const SizedBox(height: 12,
+                    ),
+                  ],
                 ),
               ),
-            )
-          ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: IconButton(
+                    icon: Icon(isPlaying ? Icons.pause : Icons.music_note, color: Colors.pinkAccent,),
+                    onPressed: (){
+                      setState(() {
+                        isPlaying = !isPlaying;
+                        if(isPlaying){
+                          refreshState();
+                        }
+                      });
+                    },
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -521,7 +544,7 @@ class _ChartPageState extends State<ChartPage> {
     return BarChartData(
       barTouchData: BarTouchData(
         touchTooltipData: TouchTooltipData(
-          tooltipBgColor: Colors.grey,
+          tooltipBgColor: Colors.indigoAccent,
           getTooltipItems: (touchedSpots){
             return touchedSpots.map((touchedSpot){
               String months;
@@ -734,133 +757,136 @@ class _ChartPageState extends State<ChartPage> {
   }
 
   Widget barChartSample2(){
-    return AspectRatio(
-      aspectRatio: 1.5,
-      child: Card(
-        elevation: 0,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-        color: const Color(0xff2c4260),
-        child: Padding(
-          padding: EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  makeTransactionsIcon(),
-                  const SizedBox(
-                    width: 38,
-                  ),
-                  Text(
-                    '신고 / 처리',
-                    style: TextStyle(color: Colors.white, fontSize: 22, fontFamily: 'NotoSans-bold'),
-                  ),
-                  const SizedBox(
-                    width: 4,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 38,
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: FlChart(
-                    chart: BarChart(
-                      BarChartData(
-                        maxY: 20,
-                        barTouchData: BarTouchData(
-                          touchTooltipData: TouchTooltipData(
-                              tooltipBgColor: Colors.grey,
-                              getTooltipItems: (spots){
-                                return spots.map((TouchedSpot spot){
-                                  return null;
-                                }).toList();
-                              }
-                          ),
-                          touchResponseSink: barTouchResultStreamController.sink,
-                        ),
-                        titlesData: FlTitlesData(
-                          show: true,
-                          bottomTitles: SideTitles(
-                            showTitles: true,
-                            textStyle: TextStyle(
-                                color: const Color(0xff7589a2),
-                                fontFamily: 'NotoSans-bold',
-                                fontSize: 12
+    return Padding(
+      padding: EdgeInsets.all(10.0),
+      child: AspectRatio(
+        aspectRatio: 1.7,
+        child: Card(
+          elevation: 0,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+          color: const Color(0xff2c4260),
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    makeTransactionsIcon(),
+                    const SizedBox(
+                      width: 38,
+                    ),
+                    Text(
+                      '신고 / 처리',
+                      style: TextStyle(color: Colors.white, fontSize: 22, fontFamily: 'NotoSans-bold'),
+                    ),
+                    const SizedBox(
+                      width: 4,
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 38,
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: FlChart(
+                      chart: BarChart(
+                        BarChartData(
+                          maxY: 20,
+                          barTouchData: BarTouchData(
+                            touchTooltipData: TouchTooltipData(
+                                tooltipBgColor: Colors.grey,
+                                getTooltipItems: (spots){
+                                  return spots.map((TouchedSpot spot){
+                                    return null;
+                                  }).toList();
+                                }
                             ),
-                            margin: 4,
-                            getTitles: (double value){
-                              switch(value.toInt()){
-                                case 0:
-                                  return 'Jan';
-                                case 1:
-                                  return 'Feb';
-                                case 2:
-                                  return 'Mar';
-                                case 3:
-                                  return 'Apr';
-                                case 4:
-                                  return 'May';
-                                case 5:
-                                  return 'Jun';
-                                case 6:
-                                  return 'Jul';
-                                case 7:
-                                  return 'Aug';
-                                case 8:
-                                  return 'Sep';
-                                case 9:
-                                  return 'Oct';
-                                case 10:
-                                  return 'Nov';
-                                case 11:
-                                  return 'Dec';
-                                default: return '';
-                              }
-                            },
+                            touchResponseSink: barTouchResultStreamController.sink,
                           ),
-                          leftTitles: SideTitles(
-                            showTitles: true,
-                            textStyle: TextStyle(
-                                color: const Color(0xff7589a2),
-                                fontFamily: 'NotoSans-bold',
-                                fontSize: 12
+                          titlesData: FlTitlesData(
+                            show: true,
+                            bottomTitles: SideTitles(
+                              showTitles: true,
+                              textStyle: TextStyle(
+                                  color: const Color(0xff7589a2),
+                                  fontFamily: 'NotoSans-bold',
+                                  fontSize: 12
+                              ),
+                              margin: 4,
+                              getTitles: (double value){
+                                switch(value.toInt()){
+                                  case 0:
+                                    return 'Jan';
+                                  case 1:
+                                    return 'Feb';
+                                  case 2:
+                                    return 'Mar';
+                                  case 3:
+                                    return 'Apr';
+                                  case 4:
+                                    return 'May';
+                                  case 5:
+                                    return 'Jun';
+                                  case 6:
+                                    return 'Jul';
+                                  case 7:
+                                    return 'Aug';
+                                  case 8:
+                                    return 'Sep';
+                                  case 9:
+                                    return 'Oct';
+                                  case 10:
+                                    return 'Nov';
+                                  case 11:
+                                    return 'Dec';
+                                  default: return '';
+                                }
+                              },
                             ),
-                            margin: 16,
-                            reservedSize: 14,
-                            getTitles: (value){
-                              if(value == 0){
-                                return '1';
-                              }else if(value == 10){
-                                return '10';
-                              }else if(value == 19){
-                                return '20';
-                              }else{
-                                return '';
-                              }
-                            },
+                            leftTitles: SideTitles(
+                              showTitles: true,
+                              textStyle: TextStyle(
+                                  color: const Color(0xff7589a2),
+                                  fontFamily: 'NotoSans-bold',
+                                  fontSize: 12
+                              ),
+                              margin: 16,
+                              reservedSize: 14,
+                              getTitles: (value){
+                                if(value == 0){
+                                  return '1';
+                                }else if(value == 10){
+                                  return '10';
+                                }else if(value == 19){
+                                  return '20';
+                                }else{
+                                  return '';
+                                }
+                              },
+                            ),
                           ),
+                          borderData: FlBorderData(
+                            show: false,
+                          ),
+                          barGroups: showingBarGroups,
                         ),
-                        borderData: FlBorderData(
-                          show: false,
-                        ),
-                        barGroups: showingBarGroups,
                       ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 12,
-              )
-            ],
+                const SizedBox(
+                  height: 12,
+                )
+              ],
+            ),
           ),
         ),
       ),
