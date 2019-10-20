@@ -55,6 +55,23 @@ class _ChartPageState extends State<ChartPage> {
   void initState() {
     super.initState();
 
+    //pieChartSample2
+    pieTouchedResultStreamController = StreamController();
+    pieTouchedResultStreamController.stream.distinct().listen((details){
+      if(details == null){
+        return;
+      }
+
+      setState(() {
+        if(details.touchInput is FlLongPressEnd){
+          pieTouchedIndex = -1;
+        }else{
+          pieTouchedIndex = details.touchedSectionPosition;
+        }
+      });
+
+    });
+
     //sample1
     sample1BarTouchedResultStreamController = StreamController();
     sample1BarTouchedResultStreamController.stream
@@ -162,10 +179,51 @@ class _ChartPageState extends State<ChartPage> {
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
+          pieSample2(),
 //          lineSample2(),
 //          barChartSample1(),
 //          barChartSample2(),
         ],
+      ),
+    );
+  }
+
+  Widget pieSample2(){
+    return AspectRatio(
+      aspectRatio: 1.3,
+      child: Card(
+        color: Colors.white,
+        child: Row(
+          children: <Widget>[
+            const SizedBox(
+              height: 18,
+            ),
+            Expanded(
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: FlChart(
+                  chart: PieChart(
+                    PieChartData(
+                        pieTouchData: PieTouchData(
+                            touchResponseStreamSink: pieTouchedResultStreamController.sink),
+                        borderData: FlBorderData(
+                          show: false,
+                        ),
+                        sectionsSpace: 0,
+                        centerSpaceRadius: 40,
+                        sections: showingSections()
+                    ),
+                  ),
+                )
+              ),
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+            )
+          ],
+        ),
       ),
     );
   }
