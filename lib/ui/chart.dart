@@ -4,6 +4,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
+import 'indicator.dart';
+
+
+
 
 class ChartPage extends StatefulWidget {
   final List<Color> availableColors = [
@@ -221,6 +225,9 @@ class _ChartPageState extends State<ChartPage> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+
+              ],
             )
           ],
         ),
