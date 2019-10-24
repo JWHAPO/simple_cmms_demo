@@ -223,7 +223,7 @@ class _ChartPageState extends State<ChartPage> {
               children: <Widget>[
                 Indicator(
                   color: Color(0xff0293ee),
-                  text: 'First',
+                  text: 'Mr.Kim',
                   isSquare: true,
                 ),
                 SizedBox(
@@ -231,7 +231,7 @@ class _ChartPageState extends State<ChartPage> {
                 ),
                 Indicator(
                   color: Color(0xfff8b250),
-                  text: 'Second',
+                  text: 'Mr.Lee',
                   isSquare: true,
                 ),
                 SizedBox(
@@ -239,7 +239,7 @@ class _ChartPageState extends State<ChartPage> {
                 ),
                 Indicator(
                   color: Color(0xff845bef),
-                  text: 'Third',
+                  text: 'Mr.Park',
                   isSquare: true,
                 ),
                 SizedBox(
@@ -247,7 +247,7 @@ class _ChartPageState extends State<ChartPage> {
                 ),
                 Indicator(
                   color: Color(0xff13d38e),
-                  text: 'Fourth',
+                  text: 'Mr.Ahn',
                   isSquare: true,
                 ),
                 SizedBox(
