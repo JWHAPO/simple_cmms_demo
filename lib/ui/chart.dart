@@ -1,13 +1,8 @@
 import 'dart:async';
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-
-import 'indicator.dart';
-
-
-
+import 'package:simple_cmms_demo/ui/indicator.dart';
 
 class ChartPage extends StatefulWidget {
   final List<Color> availableColors = [
