@@ -179,9 +179,9 @@ class _ChartPageState extends State<ChartPage> {
       child: Column(
         children: <Widget>[
           pieSample2(),
-//          lineSample2(),
-//          barChartSample1(),
-//          barChartSample2(),
+          lineSample2(),
+          barChartSample1(),
+          barChartSample2(),
         ],
       ),
     );
@@ -189,9 +189,9 @@ class _ChartPageState extends State<ChartPage> {
 
   Widget pieSample2(){
     return AspectRatio(
-      aspectRatio: 1.3,
+      aspectRatio: 1.7,
       child: Card(
-        color: Colors.white,
+        color: Colors.grey,
         child: Row(
           children: <Widget>[
             const SizedBox(
@@ -314,7 +314,7 @@ class _ChartPageState extends State<ChartPage> {
       child: Stack(
         children: <Widget>[
           AspectRatio(
-            aspectRatio: 1.70,
+            aspectRatio: 1.7,
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(
@@ -921,7 +921,7 @@ class _ChartPageState extends State<ChartPage> {
                     ),
                     Text(
                       '신고 / 처리',
-                      style: TextStyle(color: Colors.white, fontSize: 22, fontFamily: 'NotoSans-bold'),
+                      style: TextStyle(color: Colors.white, fontSize: 20, fontFamily: 'NotoSans-bold'),
                     ),
                     const SizedBox(
                       width: 4,
