@@ -4,6 +4,7 @@ import 'package:simple_cmms_demo/ui/home.dart';
 import 'package:simple_cmms_demo/ui/wolist.dart';
 import 'package:simple_cmms_demo/ui/eqlist.dart';
 import 'package:simple_cmms_demo/ui/chart.dart';
+import 'package:simple_cmms_demo/ui/request.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
 
   var routes = <String, WidgetBuilder>{
     '/main':(BuildContext context) => MyHomePage(key: Key("mainPage"), title: "Cricket Demo",),
+    'request':(BuildContext context) => RequestPage(),
   };
 
   @override
@@ -101,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void onTabTapped(int index){
     setState(() {
       if(index==2){
-
+        Navigator.pushNamed(context, 'request');
       }else{
         _currentIndex = index;
 
