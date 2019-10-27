@@ -190,84 +190,80 @@ class _ChartPageState extends State<ChartPage> {
   Widget pieSample2(){
     return AspectRatio(
       aspectRatio: 1.7,
-      child: Stack(
-        children: <Widget>[
-          Card(
-            color: Colors.grey,
-            child: Row(
-              children: <Widget>[
-                const SizedBox(
-                  height: 18,
-                ),
-                Expanded(
-                  child: AspectRatio(
-                      aspectRatio: 1,
-                      child: FlChart(
-                        chart: PieChart(
-                          PieChartData(
-                              pieTouchData: PieTouchData(
-                                  touchResponseStreamSink: pieTouchedResultStreamController.sink),
-                              borderData: FlBorderData(
-                                show: false,
-                              ),
-                              sectionsSpace: 0,
-                              centerSpaceRadius: 40,
-                              sections: showingSections()
-                          ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Card(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+          color: Colors.white,
+          child: Row(
+            children: <Widget>[
+              const SizedBox(
+                height: 18,
+              ),
+              Expanded(
+                child: AspectRatio(
+                    aspectRatio: 1,
+                    child: FlChart(
+                      chart: PieChart(
+                        PieChartData(
+                            pieTouchData: PieTouchData(
+                                touchResponseStreamSink: pieTouchedResultStreamController.sink),
+                            borderData: FlBorderData(
+                              show: false,
+                            ),
+                            sectionsSpace: 0,
+                            centerSpaceRadius: 40,
+                            sections: showingSections()
                         ),
-                      )
+                      ),
+                    )
+                ),
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Indicator(
+                    color: Color(0xff0293ee),
+                    text: 'Mr.Kim',
+                    isSquare: true,
                   ),
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Indicator(
-                      color: Color(0xff0293ee),
-                      text: 'Mr.Kim',
-                      isSquare: true,
-                    ),
-                    SizedBox(
-                      height: 4,
-                    ),
-                    Indicator(
-                      color: Color(0xfff8b250),
-                      text: 'Mr.Lee',
-                      isSquare: true,
-                    ),
-                    SizedBox(
-                      height: 4,
-                    ),
-                    Indicator(
-                      color: Color(0xff845bef),
-                      text: 'Mr.Park',
-                      isSquare: true,
-                    ),
-                    SizedBox(
-                      height: 4,
-                    ),
-                    Indicator(
-                      color: Color(0xff13d38e),
-                      text: 'Mr.Ahn',
-                      isSquare: true,
-                    ),
-                    SizedBox(
-                      height: 18,
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  width: 28,
-                )
-              ],
-            ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Indicator(
+                    color: Color(0xfff8b250),
+                    text: 'Mr.Lee',
+                    isSquare: true,
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Indicator(
+                    color: Color(0xff845bef),
+                    text: 'Mr.Park',
+                    isSquare: true,
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Indicator(
+                    color: Color(0xff13d38e),
+                    text: 'Mr.Ahn',
+                    isSquare: true,
+                  ),
+                  SizedBox(
+                    height: 18,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                width: 28,
+              )
+            ],
           ),
-          Padding(
-            padding: EdgeInsets.only(left: 10.0, top: 10.0),
-            child: Text('작업자 별 작업률',style: TextStyle(color: Colors.white, fontSize: 20, fontFamily: 'NotoSans-bold'),),
-          )
-        ],
+        ),
       ),
     );
   }
