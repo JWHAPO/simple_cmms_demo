@@ -31,7 +31,7 @@ class _RequestPageState extends State<RequestPage> {
                 onPressed: () {
                   Navigator.pop(context);
                 }),Wrap(
-                  spacing: 8.0, // gap between adjacent chips
+                  spacing: 2.0, // gap between adjacent chips
                   runSpacing: 4.0, // gap between lines
                   children: <Widget>[
                     Container(
