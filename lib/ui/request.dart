@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 class RequestPage extends StatefulWidget {
   @override
@@ -8,20 +11,22 @@ class RequestPage extends StatefulWidget {
 class _RequestPageState extends State<RequestPage> {
 
 
-  final _titleTextEditingController = TextEditingController();
-  FocusNode _titleFocusNode;
+  final _equipmentTextEditingController = TextEditingController();
+  FocusNode _equipmentFocusNode;
+
+  String _scanBarcode = 'Unknown';
 
   @override
   void initState() {
     super.initState();;
-    _titleFocusNode = FocusNode();
+    _equipmentFocusNode = FocusNode();
 
   }
 
   @override
   void dispose() {
     super.dispose();
-    _titleFocusNode.dispose();
+    _equipmentFocusNode.dispose();
   }
 
 
@@ -53,13 +58,28 @@ class _RequestPageState extends State<RequestPage> {
                 }),
             Padding(
               padding: EdgeInsets.only(left: 10.0 , right: 10.0),
-              child: TextFormField(
-                controller: _titleTextEditingController,
-                maxLines: 1,
-                decoration: const InputDecoration(
-                  hintText: 'Write equipment name. ',
-                  labelText: 'Equipment *',
-                ),
+              child: Stack(
+                alignment: Alignment.centerRight,
+                children: <Widget>[
+                  TextFormField(
+                    controller: _equipmentTextEditingController,
+                    focusNode: _equipmentFocusNode,
+                    maxLines: 1,
+                    decoration: const InputDecoration(
+                      hintText: 'Write equipment name. ',
+                      labelText: 'Equipment *',
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 5.0),
+                    child: InkWell(
+                      onTap: (){
+                        scanBarcode();
+                      },
+                      child: Icon(Icons.filter_center_focus, size: 30,),
+                    ),
+                  ),
+                ],
               ),
             ),
 
@@ -68,4 +88,23 @@ class _RequestPageState extends State<RequestPage> {
       ),
     );
   }
+
+  Future<void> scanBarcode() async {
+    String barcodeScanRes;
+
+    try{
+      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode('#FF0000', 'Cancel', true, ScanMode.DEFAULT);
+      print('barcode:::$barcodeScanRes');
+    } on PlatformException{
+      barcodeScanRes = 'Failed to get platform version.';
+    }
+
+    if(!mounted) return;
+
+    setState(() {
+      _scanBarcode = barcodeScanRes;
+      _equipmentTextEditingController.text = _scanBarcode;
+    });
+  }
+
 }
