@@ -194,7 +194,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget myWork3(){
     return Container(
-      height: MediaQuery.of(context).size.height*0.26,
+      height: MediaQuery.of(context).size.height*0.28,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: myWorkImages.length,

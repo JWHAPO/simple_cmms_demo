@@ -6,6 +6,26 @@ class RequestPage extends StatefulWidget {
 }
 
 class _RequestPageState extends State<RequestPage> {
+
+
+  final _titleTextEditingController = TextEditingController();
+  FocusNode _titleFocusNode;
+
+  @override
+  void initState() {
+    super.initState();;
+    _titleFocusNode = FocusNode();
+
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _titleFocusNode.dispose();
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     //바코드
@@ -30,34 +50,19 @@ class _RequestPageState extends State<RequestPage> {
                 ),
                 onPressed: () {
                   Navigator.pop(context);
-                }),Wrap(
-                  spacing: 2.0, // gap between adjacent chips
-                  runSpacing: 4.0, // gap between lines
-                  children: <Widget>[
-                    Container(
-                      child: Chip(
-                        label: Text('작업형태1',style: TextStyle(color: Colors.white),),
-                        backgroundColor: Colors.deepPurpleAccent,
-                        elevation: 4,
-                        shadowColor: Colors.grey[50],
-                        padding: EdgeInsets.all(4),
-                      ),
-                      margin: EdgeInsets.only(left: 12, right: 12,top: 2,bottom: 2),
-                    ),
-                    Chip(
-                      avatar: CircleAvatar(backgroundColor: Colors.blue.shade900, child: Text('작업형태2')),
-                      label: Text('Lafayette'),
-                    ),
-                    Chip(
-                      avatar: CircleAvatar(backgroundColor: Colors.blue.shade900, child: Text('작업형태3')),
-                      label: Text('Mulligan'),
-                    ),
-                    Chip(
-                      avatar: CircleAvatar(backgroundColor: Colors.blue.shade900, child: Text('작업형태4')),
-                      label: Text('Laurens'),
-                    ),
-              ],
-            )
+                }),
+            Padding(
+              padding: EdgeInsets.only(left: 10.0 , right: 10.0),
+              child: TextFormField(
+                controller: _titleTextEditingController,
+                maxLines: 1,
+                decoration: const InputDecoration(
+                  hintText: 'Write equipment name. ',
+                  labelText: 'Equipment *',
+                ),
+              ),
+            ),
+
           ],
         ),
       ),
