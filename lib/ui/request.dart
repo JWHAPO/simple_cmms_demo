@@ -1,7 +1,10 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
+import 'dart:io';
+
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RequestPage extends StatefulWidget {
   @override
@@ -15,6 +18,15 @@ class _RequestPageState extends State<RequestPage> {
   FocusNode _equipmentFocusNode;
 
   String _scanBarcode = 'Unknown';
+  File _image;
+
+  Future getImage() async{
+    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+
+    setState(() {
+      _image = image;
+    });
+  }
 
   @override
   void initState() {
