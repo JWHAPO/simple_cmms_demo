@@ -94,6 +94,16 @@ class _RequestPageState extends State<RequestPage> {
                 ],
               ),
             ),
+            Container(
+              width: 320,
+              height: 120,
+              alignment: Alignment.center,
+              color: Colors.grey,
+              padding: EdgeInsets.all(10.0),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: _image == null ? Icon(Icons.add, color: Colors.black,) : Image.file(_image)),
+            )
 
           ],
         ),
