@@ -15,7 +15,10 @@ class _RequestPageState extends State<RequestPage> {
 
 
   final _equipmentTextEditingController = TextEditingController();
+  final _requestTextEditingController = TextEditingController();
+
   FocusNode _equipmentFocusNode;
+  FocusNode _requestFocusNode;
 
   String _scanBarcode = 'Unknown';
   File _image;
@@ -94,6 +97,9 @@ class _RequestPageState extends State<RequestPage> {
                 ],
               ),
             ),
+            SizedBox(
+              height: 20.0,
+            ),
             Container(
               width: 320,
               height: 120,
@@ -107,11 +113,13 @@ class _RequestPageState extends State<RequestPage> {
             Padding(
               padding: EdgeInsets.only(left: 10.0, right: 10.0),
               child: TextFormField(
-                controller: _equipmentTextEditingController,
-                focusNode: _equipmentFocusNode,
+                controller: _requestTextEditingController,
+                focusNode: _requestFocusNode,
+                keyboardType: TextInputType.multiline,
                 decoration: const InputDecoration(
                   hintText: 'Write description . ',
                   labelText: 'Request description *',
+                  contentPadding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0)
                 ),
               ),
             )
