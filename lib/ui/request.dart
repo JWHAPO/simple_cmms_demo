@@ -103,6 +103,17 @@ class _RequestPageState extends State<RequestPage> {
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: _image == null ? Icon(Icons.add, color: Colors.black,) : Image.file(_image)),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 10.0, right: 10.0),
+              child: TextFormField(
+                controller: _equipmentTextEditingController,
+                focusNode: _equipmentFocusNode,
+                decoration: const InputDecoration(
+                  hintText: 'Write description . ',
+                  labelText: 'Request description *',
+                ),
+              ),
             )
 
           ],
