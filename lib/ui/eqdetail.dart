@@ -9,11 +9,13 @@ class EqDetailPage extends StatefulWidget {
 class _EqDetailPageState extends State<EqDetailPage> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
+    return Material(
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
 
-        ],
+          ],
+        ),
       ),
     );
   }
