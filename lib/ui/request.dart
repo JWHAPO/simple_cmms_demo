@@ -33,7 +33,7 @@ class _RequestPageState extends State<RequestPage> {
 
   @override
   void initState() {
-    super.initState();;
+    super.initState();
     _equipmentFocusNode = FocusNode();
 
   }
