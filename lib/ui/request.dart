@@ -95,30 +95,47 @@ class _RequestPageState extends State<RequestPage> {
               SizedBox(
                 height: 20.0,
               ),
-              Container(
-                width: MediaQuery.of(context).size.width*0.9,
-                height: 120,
-                alignment: Alignment.center,
-                color: Colors.grey,
-                padding: EdgeInsets.all(10.0),
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: _image == null ? Icon(Icons.add, color: Colors.black,) : Image.file(_image)),
+              Padding(
+                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height*0.25,
+                  alignment: Alignment.center,
+                  color: Colors.grey,
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: _image == null ? Icon(Icons.add, color: Colors.black,) : Image.file(_image)),
+                ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                child: TextFormField(
+                padding: const EdgeInsets.all(15.0),
+                child: TextField(
                   controller: _requestTextEditingController,
                   focusNode: _requestFocusNode,
-                  keyboardType: TextInputType.multiline,
-                  decoration: const InputDecoration(
-                    hintText: 'Write description . ',
-                    labelText: 'Request description *',
-                    contentPadding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0)
+                  minLines: 5,
+                  maxLines: 10,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                    hintText: 'Write Request Description. ',
+                    labelText: 'Request *',
+                    filled: true,
+                    fillColor: Colors.grey,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      borderSide: BorderSide(color: Colors.blueAccent),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      borderSide: BorderSide(color: Colors.blueAccent)
+                    )
                   ),
                 ),
-              )
-
+              ),RaisedButton(
+                child: Text('보내기'),
+                onPressed: (){
+                  print('!!!!!!!!!!!');
+                },
+              ),
             ],
           ),
         ),
