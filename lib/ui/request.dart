@@ -60,83 +60,85 @@ class _RequestPageState extends State<RequestPage> {
           backgroundColor: Color.fromRGBO(255, 255, 255, 1.0),
           title: Text('Request', style: TextStyle(fontFamily: 'NotoSans-bold'),),
         ),
-        body: Container(
-          color: Colors.white,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(left: 10.0 , right: 10.0),
-                child: Stack(
-                  alignment: Alignment.centerRight,
-                  children: <Widget>[
-                    TextFormField(
-                      controller: _equipmentTextEditingController,
-                      focusNode: _equipmentFocusNode,
-                      maxLines: 1,
-                      decoration: const InputDecoration(
-                        hintText: 'Write equipment name. ',
-                        labelText: 'Equipment *',
+        body: SingleChildScrollView(
+          child: Container(
+            color: Colors.white,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(left: 10.0 , right: 10.0),
+                  child: Stack(
+                    alignment: Alignment.centerRight,
+                    children: <Widget>[
+                      TextFormField(
+                        controller: _equipmentTextEditingController,
+                        focusNode: _equipmentFocusNode,
+                        maxLines: 1,
+                        decoration: const InputDecoration(
+                          hintText: 'Write equipment name. ',
+                          labelText: 'Equipment *',
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: InkWell(
-                        onTap: (){
-                          scanBarcode();
-                        },
-                        child: Icon(Icons.filter_center_focus, size: 30,),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 5.0),
+                        child: InkWell(
+                          onTap: (){
+                            scanBarcode();
+                          },
+                          child: Icon(Icons.filter_center_focus, size: 30,),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height*0.25,
-                  alignment: Alignment.center,
-                  color: Colors.grey,
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: _image == null ? Icon(Icons.add, color: Colors.black,) : Image.file(_image)),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: TextField(
-                  controller: _requestTextEditingController,
-                  focusNode: _requestFocusNode,
-                  minLines: 5,
-                  maxLines: 10,
-                  autocorrect: false,
-                  decoration: InputDecoration(
-                    hintText: 'Write Request Description. ',
-                    labelText: 'Request *',
-                    filled: true,
-                    fillColor: Colors.grey,
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(color: Colors.blueAccent),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(color: Colors.blueAccent)
-                    )
+                    ],
                   ),
                 ),
-              ),RaisedButton(
-                child: Text('보내기'),
-                onPressed: (){
-                  print('!!!!!!!!!!!');
-                },
-              ),
-            ],
+                SizedBox(
+                  height: 20.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height*0.25,
+                    alignment: Alignment.center,
+                    color: Colors.grey,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: _image == null ? Icon(Icons.add, color: Colors.black,) : Image.file(_image)),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: TextField(
+                    controller: _requestTextEditingController,
+                    focusNode: _requestFocusNode,
+                    minLines: 5,
+                    maxLines: 10,
+                    autocorrect: false,
+                    decoration: InputDecoration(
+                      hintText: 'Write Request Description. ',
+                      labelText: 'Request *',
+                      filled: true,
+                      fillColor: Colors.grey,
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        borderSide: BorderSide(color: Colors.blueAccent),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        borderSide: BorderSide(color: Colors.blueAccent)
+                      )
+                    ),
+                  ),
+                ),RaisedButton(
+                  child: Text('보내기'),
+                  onPressed: (){
+                    print('!!!!!!!!!!!');
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
